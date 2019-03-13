@@ -1,0 +1,91 @@
+<p>
+  equipos works!
+</p>
+<h3>Añadir Equipo:</h3>
+
+<form [formGroup]="formulario">
+  <input type="text" placeholder="Nombre" 
+         formControlName="nombreEquipo" >
+  <br>
+  <input type="text" placeholder="Ciudad" 
+         formControlName="ciudadEquipo" >
+  <br>
+  <input type="number" placeholder="Socios" 
+         formControlName="sociosEquipo">
+  <br>
+  <input type="number" placeholder="Año fundación" 
+         formControlName="agnoFundacionEquipo">
+  <br>
+  <input type="url" placeholder="URL del escudo" 
+         formControlName="escudoURLEquipo">
+</form>
+<br>
+<img [src]="equipo.escudoURL" [title]="equipo.nombre" alt="Escudo" height="60" width="60"> <!--Property Binding-->
+<br>
+<button (click)="addEquipo()">Añadir Equipo</button>
+<br>
+<br>
+
+<input type="text" placeholder="Buscar" [(ngModel)]="equipoBuscar">
+<h3>Listado de Equipos</h3>
+<div *ngIf="arrayEquipos.length > 0">
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Ciudad</th>
+      <th>Nº Socios</th>
+      <th>Año Fundación</th>
+      <th>Escudo</th>
+      <th>Delete</th>
+    </tr>
+    <tr *ngFor="let equipo of arrayEquipos | buscar: equipoBuscar | priorizar" 
+         [ngClass]="setStyle(equipo)" >
+      <td (mouseover)="detalleEquipo(equipo)"
+          (mouseout)="detalleEquipo(null)" >{{equipo.nombre | uppercase }}</td>
+      <td>{{equipo.ciudad}}</td>
+      <td>{{equipo.socios}}</td>
+      <td>{{equipo.agnoFundacion}}</td>
+      <td><img [src]="equipo.escudoURL" alt="Escudo" height="60" width="60"></td>
+      <td (click)="deleteEquipo(equipo)">Delete</td>
+    </tr>
+  </table>
+  <div>
+    Nombre: {{equipo.nombre | uppercase }}
+    <br>
+    Ciudad: {{equipo.ciudad}} 
+    <br>
+    Nº Socios: {{equipo.socios}}
+    <br>
+    Año Fundación: {{equipo.agnoFundacion}}
+    <br>
+    Escudo: 
+    <br>
+    <img [src]="equipo.escudoURL" alt="" height="120" width="120">
+  </div>
+</div>
+
+<div *ngIf="arrayEquipos.length==0">
+  <p>Cero</p>
+  <table style="width:35%">
+    <tr>
+      <th>Nombre</th>
+      <th>Ciudad</th>
+      <th>Nº Socios</th>
+      <th>Año Fundación</th>
+    </tr>
+    <tr>
+      <td colspan="4">No hay equipos</td>
+    </tr>
+  </table> 
+</div>
+
+<!--
+  Alberto Basalo Academia Binaria
+  academiabinaria.com
+
+  Enrique Oriol enriqueorial.com
+
+  udemy.com Cursos
+
+  Victor Robles victorroblesweb.es
+-->

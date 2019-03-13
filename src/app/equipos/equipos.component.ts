@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Equipo } from './equipo';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-equipos',
   templateUrl: './equipos.component.html',
@@ -28,20 +28,27 @@ export class EquiposComponent implements OnInit {
 
   private buildForm(){
       this.formulario = this.formBuilder.group({
-        nombreEquipo: '',
-        ciudadEquipo: '',
-        sociosEquipo: null,
-        agnoFundacionEquipo: null,
+        nombreEquipo: ['', Validators.required],
+        ciudadEquipo: ['', Validators.required],
+        sociosEquipo: [null, [Validators.required, Validators.min(1)]],
+        agnoFundacionEquipo: [null, [Validators.required, Validators.min(1900)]],
         escudoURLEquipo: null,
       });
   }
 
   addEquipo() {
-    if (!this.checkVacio(this.equipo)) {
-      this.arrayEquipos.push(this.equipo);
-      this.equipo = new Equipo ('', '', null, null, null);
+    console.log('Add Equipo Status: ' + this.formulario.status);
+    if (this.formulario.valid) {
+    /*if (!this.checkVacio(this.formulario)) {*/
+      let equipo: Equipo;
+      equipo = new Equipo (this.formulario.get('nombreEquipo').value, 
+                           this.formulario.get('ciudadEquipo').value, 
+                           this.formulario.get('sociosEquipo').value,
+                           this.formulario.get('agnoFundacionEquipo').value,
+                           this.formulario.get('escudoURLEquipo').value);
+      this.arrayEquipos.push(equipo);
+      this.formulario.reset();
     }
-    //console.log(this.arrayEquipos);
   }
 
   deleteEquipo(equipo: Equipo) {
@@ -60,27 +67,27 @@ export class EquiposComponent implements OnInit {
   }
 
   detalleEquipo(equipo: Equipo) {
-    
+
     if (equipo !== null) {
-      console.log('Nombre del equipo: ' + equipo.nombre);
+     // console.log('Nombre del equipo: ' + equipo.nombre);
       this.equipo = equipo;
     } else {
-      console.log('Equipo null ');
+     // console.log('Equipo null ');
       this.equipo = new Equipo ('', '', null, null, null);
     }
   }
 
-  
 
-  private checkVacio(equipo: Equipo): boolean {
+  /*private checkVacio(formulario: FormGroup ): boolean {
     let ret: boolean;
     ret = false;
-    if (equipo.nombre === '' ||
-        equipo.ciudad === '' ||
-        equipo.socios === null ||
-        equipo.agnoFundacion === null) {
-            ret = true;
-        }
+    console.log ('check vacio: ' + formulario);
+    if (formulario.get('nombreEquipo').value === '' ||
+        formulario.get('ciudadEquipo').value === '' ||
+        formulario.get('sociosEquipo') === null ||
+        formulario.get('agnoFundacionEquipo') === null) {
+        ret = true;
+    }
     return ret;
-  }
+  }*/
 }

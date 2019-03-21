@@ -51,31 +51,11 @@ export class EquiposComponent implements OnInit {
     }
   }
 
-  deleteEquipo(equipo: Equipo) {
-    console.log ('deleteEquipo: ' + equipo.nombre);
-    //this.arrayEquipos.find(equipo)
-    /*let found = this.arrayEquipos.find(function (equipo) {
-      return element > 10;
-    });*/
-
-  }
-  setStyle(equipo: Equipo) {
-    return {
-      masde1000: equipo.socios > 1000 ? true : false ,
-      menosde1000:  equipo.socios < 1000 ? true : false
-    };
-  }
-
-  detalleEquipo(equipo: Equipo) {
-
-    if (equipo !== null) {
-     // console.log('Nombre del equipo: ' + equipo.nombre);
-      this.equipo = equipo;
-    } else {
-     // console.log('Equipo null ');
-      this.equipo = new Equipo ('', '', null, null, null);
-    }
-  }
+  recogerInfo(equipo: Equipo) {
+    console.log('Recoger Info' + equipo);
+    this.equipo = Object.assign({}, equipo);
+}
+ 
 
 
   /*private checkVacio(formulario: FormGroup ): boolean {

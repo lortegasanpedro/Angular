@@ -1,0 +1,42 @@
+<div id="listado-eqquipos-component">
+    <p class="center">
+        Listado de Equipos Componente!
+    </p>
+  <input type="text" placeholder="Buscar" [(ngModel)]="equipoBuscar">
+
+  <h3>Listado de Equipos</h3>
+  <div *ngIf="arrayEquipos.length > 0">
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Ciudad</th>
+        <th>Nº Socios</th>
+        <th>Año Fundación</th>
+        <th>Escudo</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor="let equipo of arrayEquipos | buscar: equipoBuscar | priorizar" [ngClass]="setStyle(equipo)">
+        <td (mouseover)="detalleEquipo(equipo)" (mouseout)="detalleEquipo(null)">{{equipo.nombre | uppercase }}</td>
+        <td>{{equipo.ciudad}}</td>
+        <td>{{equipo.socios}}</td>
+        <td>{{equipo.agnoFundacion}}</td>
+        <td><img [src]="equipo.escudoURL" alt="Escudo" height="60" width="60"></td>
+        <td (click)="deleteEquipo(equipo)">Delete</td>
+      </tr>
+    </table>
+
+    <div *ngIf="arrayEquipos.length==0">
+      <p>Cero</p>
+      <table style="width:35%">
+        <tr>
+          <th>Nombre</th>
+          <th>Ciudad</th>
+          <th>Nº Socios</th>
+          <th>Año Fundación</th>
+        </tr>
+        <tr>
+          <td colspan="4">No hay equipos</td>
+        </tr>
+      </table>
+    </div>
+  </div>

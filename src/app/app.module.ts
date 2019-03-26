@@ -9,6 +9,7 @@ import { BuscarPipe } from './pipes/buscar.pipe';
 import { JugadoresComponent } from './jugadores/jugadores.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ListadoEquiposComponent } from './listado-equipos/listado-equipos.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ListadoEquiposComponent } from './listado-equipos/listado-equipos.compo
     PriorizarPipe,
     BuscarPipe,
     JugadoresComponent,
-    ListadoEquiposComponent
+    ListadoEquiposComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

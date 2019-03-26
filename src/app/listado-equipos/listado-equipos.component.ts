@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Equipo } from '../equipos/equipo';
+import { EquiposService } from '../services/equipos.service';
 
 @Component({
   selector: 'app-listado-equipos',
@@ -13,10 +14,17 @@ export class ListadoEquiposComponent implements OnInit {
   equipo: Equipo;
   equipoBuscar: string;
 
-  constructor() { }
+  constructor( private equiposService: EquiposService ) { }
 
   ngOnInit() {
     console.log ('ListadoEquiposComponent ngOnInit');
+   // this.equipo = new Equipo ('', '', null, null, null);
+   // this.arrayEquipos = [ new Equipo('zz', 'zz2', 23, 1978, 'http://elmiradorespagnol.free.fr/futbol/original/Barcelona.gif'),
+   //                       new Equipo('cc', 'cc2', 230, 1990, 'http://elmiradorespagnol.free.fr/futbol/original/Atletico%20de%20Madrid.gif'),
+ // tslint:disable-next-line: max-line-length
+    //                      new Equipo('aa', 'aa2', 25000, 2015, 'https://www.aupaathletic.com/media/el-club/escudo/escudo-athletic-club-1972.gif'),
+    //                      new Equipo('bb', 'bb2', 1200, 1980, 'http://elmiradorespagnol.free.fr/futbol/original/Sevilla.gif') ];
+    this.arrayEquipos = this.equiposService.arrayEquipos;
     this.equipoBuscar = '';
   }
 

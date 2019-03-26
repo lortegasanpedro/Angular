@@ -1,3 +1,46 @@
-<p>
-  jugadores works!
-</p>
+<app-menu></app-menu>
+
+<app-listado-equipos> </app-listado-equipos>
+
+<div id="jugadores-component">
+    <p class="center">
+        Listado de Jugadores Componente!
+    </p>
+  <input type="text" placeholder="Buscar" [(ngModel)]="jugadorBuscar">
+
+  <h3>Listado de Jugadores</h3>
+  <div *ngIf="arrayJugadores.length > 0">
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>1º Apellido</th>
+        <th>2º Apellido</th>
+        <th>Edad</th>
+        <th>Equipo</th>
+      </tr>
+      <tr *ngFor="let jugador of arrayJugadores | buscar: jugadorBuscar | priorizar" >
+        <td (mouseover)="detalleJugador(jugador)" (mouseout)="detalleJugador(null)">
+            {{jugador.nombre | uppercase }}</td>
+        <td>{{jugador.apellido1}}</td>
+        <td>{{jugador.apellido2}}</td>
+        <td>{{jugador.edad}}</td>
+        <td>{{jugador.equipo}}</td>
+      </tr>
+    </table>
+
+    <div *ngIf="arrayJugadores.length==0">
+      <p>Cero</p>
+      <table style="width:35%">
+        <tr>
+            <th>Nombre</th>
+            <th>1º Apellido</th>
+            <th>2º Apellido</th>
+            <th>Edad</th>
+            <th>Equipo</th>
+        </tr>
+        <tr>
+          <td colspan="4">No hay jugadores</td>
+        </tr>
+      </table>
+    </div>
+  </div>

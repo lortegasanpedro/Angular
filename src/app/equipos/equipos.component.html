@@ -1,4 +1,6 @@
+<app-menu></app-menu>
 <div id="equipos-componente">
+ 
        <p class="center">
               Componente equipos!
        </p>
@@ -22,9 +24,7 @@
        <button (click)="addEquipo()">Añadir Equipo</button>
        <br>
        <br>
-
-
-
+       
        <app-listado-equipos (evtEmmiter)="recogerInfo($event)" [arrayEquipos]="arrayEquipos">
        </app-listado-equipos>
 

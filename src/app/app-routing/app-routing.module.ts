@@ -6,13 +6,22 @@ import { JugadoresComponent } from '../jugadores/jugadores.component';
 
 const routes: Routes = [
   {
-      path: '',
-      component: EquiposComponent,
-  },
-  {
-    path: 'jugadores',
-    component: JugadoresComponent,
-  }
+    path: 'equipos',
+    component: EquiposComponent,
+},
+{
+  path: 'jugadores',
+  component: JugadoresComponent,
+},
+{
+  path: '',
+  redirectTo: 'equipos', pathMatch : 'full'
+},
+{
+  path: '**',
+  component: EquiposComponent
+}
+
 
 ];
 

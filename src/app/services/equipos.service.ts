@@ -21,7 +21,8 @@ export class EquiposService {
    this.equipoBuscar = '';
 
   }
+  
   addEquipo(equipo: Equipo) {
     this.arrayEquipos.push(equipo);
-}
+  }
 }
